@@ -1,6 +1,7 @@
-age = int(input('Сколько вам лет? '))
+# age = int(input('Сколько вам лет? '))
 
 while True:  # age < 18 or age > 65
+    age = int(input('Сколько вам лет? '))
     if age < 18:
         print('Вы слишком молоды')
     elif 65 < age <= 100:
@@ -10,9 +11,8 @@ while True:  # age < 18 or age > 65
     else:
         print('Добро пожаловать!')
         break
-    age = int(input('Сколько вам лет? '))
 
-print('Добро пожаловать!')
+# print('Добро пожаловать!')
 
 i = 1
 while i <= 10:
