@@ -2,6 +2,18 @@
 Начиная с версии 3.10 в языке Python появилась такая функциональность как pattern matching (сопоставление шаблонов). Pattern matching представляет применение конструкции match, которая позволяет сопоставить выражение с некоторым шаблоном. И если выражение соответствует шаблону, то выполняются определенные действия.
 '''
 
+age = int(input('How old are you? '))
+
+match age:
+    case age if age < 18:
+        print(f'{age} < 18')
+    case age if 65 < age <= 100:
+        print(f'65 < {age} <= 100')
+    case age if age > 100:
+        print(f'{age} > 100')
+    case _:
+        print('OK')
+
 code = 404
 match code:
     case 200:
