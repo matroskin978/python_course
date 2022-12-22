@@ -5,6 +5,15 @@
 # list1 = list1 + list2  # another object
 # print(list1, id(list1))
 
+# l = list('hello, world')
+# print(l)
+# s = ''.join(l)
+# print(s)
+l = 'hello, world'.split()
+print(l)
+s = ' '.join(l)
+print(s)
+
 # https://www.w3schools.com/python/python_lists_methods.asp
 list1 = list(range(1, 11))
 
