@@ -46,3 +46,7 @@ print(max_num(7, 5))
 
 max_num2 = lambda x, y: x if x > y else y
 print(max_num2(7, 5))
+
+print((lambda x, y: x if x > y else y)(7, 5))
+res = (lambda x, y: x if x > y else y)(7, 14)
+print(res)
