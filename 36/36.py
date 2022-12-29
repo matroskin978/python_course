@@ -44,6 +44,26 @@ def get_even(num):
 list1 = list(filter(lambda num: num % 2 == 0, list1))
 print(list1)
 
+'''
+Функция zip() принимает итерации (может быть ноль или больше), объединяет их в кортеж и возвращает его.
+'''
+num_list = [1, 2, 3, 4, 5]
+str_list = ['one', 'two', 'three']
+res_list = list(zip(num_list, str_list))
+res_dict = dict(zip(str_list, num_list))
+print(res_list)
+print(res_dict)
+
+# unzip
+a, b = zip(*res_list)
+print(a)
+print(b)
+
+c = list(zip(*res_dict.items()))
+d = list(zip(*res_dict))
+print(c)
+print(d)
+
 # Homework
 '''
 Даны коллекции элементов:
