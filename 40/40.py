@@ -47,3 +47,15 @@ print(counter1())
 print(counter1())
 print(counter1())
 print(counter1())
+
+
+def fn_outer(param_outer):
+    def fn_inner(param_inner):
+        print(param_outer, param_inner)
+
+    return fn_inner
+
+
+fn_outer('test1')('test2')
+f = fn_outer('test1')
+f('test2')
