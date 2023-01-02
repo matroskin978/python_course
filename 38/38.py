@@ -66,3 +66,11 @@ print(datetime.date.today().strftime('%b %B %a %A %d'))
 print(datetime.date.today().strftime('%d %B %Y'))
 print(datetime.date.today().strftime('%d/%m/%Y'))
 print(datetime.datetime.today().strftime('%d.%m.%Y %H:%M:%S'))
+
+# Объект timedelta, позволяет получить разницу между 2-мя моментами времени.
+print(t1 := datetime.date.today())
+print(t2 := datetime.date(2023, 1, 3))
+print(t3 := t2 - t1, type(t3))
+print(t4 := datetime.timedelta(weeks=2, days=1))
+print(t5 := datetime.timedelta(days=2))
+print(t4 - t5)
