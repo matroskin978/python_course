@@ -120,13 +120,9 @@ def title_capitalize(fn):
 def end_symbol(fn):
     def wrapper(*args, **kwargs):
         title = fn(*args, **kwargs)
-        # if 'end' in kwargs:
-        #     end_s = kwargs['end']
-        # else:
-        #     end_s = '.'
         end_s = kwargs['end'] if 'end' in kwargs else '.'
-        if not title.endswith(end_s):
-            title += end_s
+        title = title.rstrip(end_s)
+        title += end_s
         return title
 
     return wrapper
@@ -138,8 +134,9 @@ def hello(s, end='.'):
     return s + end
 
 
+print(hello('hello, world!!!!!!', end='!'))
+print(hello('hello, world!!!', end='?'))
 print(hello('hello, world', end='!'))
-print(hello('hello, world', end='?'))
 print(hello('hello, world'))
 
 
