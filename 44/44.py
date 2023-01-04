@@ -8,14 +8,14 @@ while True:
         if num == 1:
             raise ZeroDivisionError
         if num == 10:
-            raise NameError
+            raise NameError('TEST ERROR!')
         # break
     except ValueError:
         print("Ooops! This is not a number.")
     except ZeroDivisionError:
         print("Ooops! The number must be > 0")
-    except:
-        print("Something error")
+    # except:
+    #     print("Something error")
     else:
         print(res)
         break
