@@ -35,7 +35,16 @@ def print_weather(data):
         sunrise_time = get_date_time(data['sys']['sunrise'], data['timezone'])
         sunset_time = get_date_time(data['sys']['sunset'], data['timezone'])
 
-        print(f"Местоположение: {data['name']}, {data['sys']['country']} \nТемпература: {data['main']['temp']} °C \nАтм. давление: {data['main']['pressure']} гПа \nВлажность: {data['main']['humidity']}% \nСкорость ветра: {data['wind']['speed']} м/с \nПогодные условия: {data['weather'][0]['description']} \nВосход: {sunrise_time} \nЗакат: {sunset_time}")
+        print(f"""
+Местоположение: {data['name']}, {data['sys']['country']}
+Температура: {data['main']['temp']} °C
+Атм. давление: {data['main']['pressure']} гПа
+Влажность: {data['main']['humidity']}%
+Скорость ветра: {data['wind']['speed']} м/с
+Погодные условия: {data['weather'][0]['description']}
+Восход: {sunrise_time}
+Закат: {sunset_time}
+""")
         print('+' * 50)
         return data
 
