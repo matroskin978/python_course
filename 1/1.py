@@ -26,8 +26,11 @@ def get_weather(city_name):
         "lang": LANG,
         "q": city_name
     }
-    r = requests.get(API_URL, params=params)
-    return r.json()
+    try:
+        r = requests.get(API_URL, params=params)
+        return r.json()
+    except:
+        return {"cod": 0, "message": "Не удалось получить данные"}
 
 
 def print_weather(data):
