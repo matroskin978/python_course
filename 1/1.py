@@ -2,12 +2,16 @@
 # https://pypi.org/project/requests/
 import requests
 import datetime
+from openpyxl import Workbook, load_workbook
+from openpyxl.styles import Font
+from os import path
 
 API_KEY = '5e1ce895b1f7950c8267adecc8ce4989'
 API_URL = 'https://api.openweathermap.org/data/2.5/weather'
 UNITS = 'metric'
 LANG = 'ru'
 CITY = 'Лондон'
+FILE_EXCEL = 'data.xlsx'
 
 
 def get_date_time(ts, timezone, dt_format="%H:%M:%S"):
@@ -49,6 +53,28 @@ def print_weather(data):
         return data
 
 
+def save_excel(data):
+    if data['cod'] == 200:
+        if path.exists(FILE_EXCEL):
+            wb = load_workbook(filename=FILE_EXCEL)
+            ws1 = wb.active
+        else:
+            wb = Workbook()
+            ws1 = wb.active
+            ws1.title = 'Статистика запросов'
+            ws1.append(['Дата запроса', 'Город', 'Температура °C'])
+            ft = Font(color='FF0000', bold=True)
+            a1 = ws1['A1']
+            b1 = ws1['B1']
+            c1 = ws1['C1']
+            a1.font = ft
+            b1.font = ft
+            c1.font = ft
+
+        ws1.append([datetime.datetime.now(), f"{data['name']}, {data['sys']['country']}", data['main']['temp']])
+        wb.save(filename=FILE_EXCEL)
+
+
 print("*" * 70)
 print("""* Привет! Я помогу узнать погоду в любом городе мира.
 * Просто введи запрос в формате city[,country_code]
@@ -63,3 +89,4 @@ while True:
     else:
         weather = get_weather(q)
         print_weather(weather)
+        save_excel(weather)
