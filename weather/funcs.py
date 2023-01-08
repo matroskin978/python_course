@@ -1,18 +1,9 @@
-# https://openweathermap.org/current
-# https://pypi.org/project/requests/
-import requests
 import datetime
+import config
+import requests
+from os import path
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
-from os import path
-
-API_KEY = '5e1ce895b1f7950c8267adecc8ce4989'
-API_URL = 'https://api.openweathermap.org/data/2.5/weather'
-UNITS = 'metric'
-LANG = 'ru'
-CITY = 'Лондон'
-FILE_EXCEL = 'data.xlsx'
-
 
 def get_date_time(ts, timezone, dt_format="%H:%M:%S"):
     tz = datetime.timezone(datetime.timedelta(seconds=timezone))
@@ -21,13 +12,13 @@ def get_date_time(ts, timezone, dt_format="%H:%M:%S"):
 
 def get_weather(city_name):
     params = {
-        "appid": API_KEY,
-        "units": UNITS,
-        "lang": LANG,
+        "appid": config.API_KEY,
+        "units": config.UNITS,
+        "lang": config.LANG,
         "q": city_name
     }
     try:
-        r = requests.get(API_URL, params=params)
+        r = requests.get(config.API_URL, params=params)
         return r.json()
     except:
         return {"cod": 0, "message": "Не удалось получить данные"}
@@ -58,8 +49,8 @@ def print_weather(data):
 
 def save_excel(data):
     if data['cod'] == 200:
-        if path.exists(FILE_EXCEL):
-            wb = load_workbook(filename=FILE_EXCEL)
+        if path.exists(config.FILE_EXCEL):
+            wb = load_workbook(filename=config.FILE_EXCEL)
             ws1 = wb.active
         else:
             wb = Workbook()
@@ -75,21 +66,4 @@ def save_excel(data):
             c1.font = ft
 
         ws1.append([datetime.datetime.now(), f"{data['name']}, {data['sys']['country']}", data['main']['temp']])
-        wb.save(filename=FILE_EXCEL)
-
-
-print("*" * 70)
-print("""* Привет! Я помогу узнать погоду в любом городе мира.
-* Просто введи запрос в формате city[,country_code]
-* Если нужно выйти из программы, тогда просто нажми Enter""")
-print("*" * 70)
-
-while True:
-    q = input('Введи название города: ')
-    if not q:
-        print('До новых встреч!')
-        break
-    else:
-        weather = get_weather(q)
-        print_weather(weather)
-        save_excel(weather)
+        wb.save(filename=config.FILE_EXCEL)
