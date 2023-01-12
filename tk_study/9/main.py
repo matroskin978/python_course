@@ -38,6 +38,8 @@ months_box.current(0)
 months_box.pack(pady=10)
 months_box.bind('<<ComboboxSelected>>', choose_month)
 
+
+# style.configure('TNotebook.Tab', font=('Verdana', 10), foreground='red')
 notebook = ttk.Notebook(root)
 notebook.pack(pady=10, padx=10, expand=True, fill='both')
 
